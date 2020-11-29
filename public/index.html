@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>socket.io chat</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+</head>
+
+<body>
+  <header>
+    <h1 class="header-h1">
+      <a class="header-a" href="/">NAKAI.COM</a>
+    </h1>
+    <nav>
+      <ul class="header-ul">
+        <li class="header-li"><a href="#" id="show-chat">CHAT</a></li>
+        <li class="header-li"><a href="#" id="show-pla">PLANETARIUM</a></li>
+      </ul>
+    </nav>
+  </header>
+  <article class="chat-article" id="chat" style="display: none;">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div class="chat-div" id="message-box">
+      <ul id="messages"></ul>
+    </div>
+    <div class="form-div">
+      <form id="message_form" action="#">
+        <input id="input_msg" autocomplete="off" /><button>^</button>
+      </form>
+    </div>
+    <script>
+      var socketio = io();
+      $(function () {
+        $('#message_form').submit(function () {
+          socketio.emit('message', $('#input_msg').val());
+          $('#input_msg').val('');
+          return false;
+        });
+        socketio.on('message', function (msg) {
+          $('#messages').append($('<li class="chat-li">').text(msg));
+          const mbox = document.getElementById('message-box');
+          const mcontent = document.getElementById('messages');
+          mbox.scrollTo(0,mcontent.scrollHeight);
+        });
+      });
+    </script>
+  <script type="text/javascript" src="/javascripts/chat.js"></script>
+  </article>
+  <article class="pla-article" id="planetarium" style="display: none;">
+    <div>
+      <canvas class="pla-canvas" id="canvas"></canvas>
+  </div>
+  <div>
+      <button class="pla-btn" id="in">in</button>
+      <button class="pla-btn" id="reset">reset</button>
+      <button class="pla-btn" id="xxx">xxx</button>
+      <input type="range" value="0.5" id="volume" min="0" max="1" step="0.1">
+  </div>
+  <script type="text/javascript" src="/javascripts/planetarium.js"></script>
+  </article>
+</body>
+
+</html>
