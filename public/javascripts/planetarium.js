@@ -6,6 +6,8 @@ document.getElementById('show-pla').onclick = function () {
     chatArticle.style.display = 'none';
     const msg = document.getElementById('messages');
     msg.innerHTML = '';
+    const graphArticle = document.getElementById('graph');
+    graphArticle.style.display = 'none';
     const planetariumArticle = document.getElementById('planetarium');
     planetariumArticle.style.display = 'block';
 };
@@ -156,7 +158,7 @@ function init() {
                 radrate += 0.0001;
             }
         } else {
-            if(xxxrate<250){
+            if(xxxrate<300){
                 xxxrate += 0.5;
                 radrate -= 0.0001;
             }

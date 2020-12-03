@@ -220,7 +220,6 @@ button {
     position: relative;
     width: 95vw; 
     height: 80vh;
-    overflow-y: scroll;
     background-color: transparent;
     border:2px rgb(200, 200, 200) solid;
     border-radius: 20px;
@@ -269,4 +268,22 @@ input[type=range]::-moz-range-thumb{
     width:20px;
     border:none;
     border-radius:50%;
+}
+
+/* graph */
+.graph-article {
+    position: fixed;
+    margin-top:80px;
+    width: 95%; 
+    height: 80%;
+    padding-left: 20px;
+    z-index: 1;
+}
+
+.graph-canvas {
+    position: relative;
+    background-color: transparent;
+    border:2px rgb(200, 200, 200) solid;
+    border-radius: 20px;
+    z-index: 1;
 }

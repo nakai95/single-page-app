@@ -16,8 +16,9 @@
     </h1>
     <nav>
       <ul class="header-ul">
-        <li class="header-li"><a href="#" id="show-chat">CHAT</a></li>
-        <li class="header-li"><a href="#" id="show-pla">PLANETARIUM</a></li>
+        <li class="header-li"><a href="javascript:void(0)" id="show-chat">CHAT</a></li>
+        <li class="header-li"><a href="javascript:void(0)" id="show-pla">PLANETARIUM</a></li>
+        <li class="header-li"><a href="javascript:void(0)" id="show-graph">GRAPH</a></li>
       </ul>
     </nav>
   </header>
@@ -71,6 +72,12 @@
       <input type="range" value="0.5" id="volume" min="0" max="1" step="0.1">
   </div>
   <script type="text/javascript" src="/javascripts/planetarium.js"></script>
+  </article>
+  <article class="graph-article" id="graph" style="display: none;">
+    <div>
+      <canvas class="graph-canvas" id="graph-canvas" onMouseDown="startDraw(event)" ></canvas>
+  </div>
+  <script type="text/javascript" src="/javascripts/graph.js"></script>
   </article>
 </body>
 
