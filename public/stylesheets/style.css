@@ -287,3 +287,8 @@ input[type=range]::-moz-range-thumb{
     border-radius: 20px;
     z-index: 1;
 }
+.graph-btn {
+    width:100px;
+    font-size:20px;
+    text-align:center;
+}

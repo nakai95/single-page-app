@@ -7,6 +7,7 @@ document.getElementById('show-graph').onclick = function () {
     planetariumArticle.style.display = 'none';
     const graphArticle = document.getElementById('graph');
     graphArticle.style.display = 'block';
+    initCanvas();
 };
 
 
@@ -18,35 +19,73 @@ $('#graph-canvas').attr('width', x);
 $('#graph-canvas').attr('height', y);
 const X = document.getElementById('graph-canvas').width;
 const Y = document.getElementById('graph-canvas').height;
+let datalist = [];
 
+function initCanvas(){
+
+ctx.strokeStyle = "rgb(0, 0, 0)";
 // x軸の描画
 ctx.beginPath();
-ctx.moveTo(20, 20);
-ctx.lineTo(20, Y-20);
+ctx.moveTo(40, 40);
+ctx.lineTo(40, Y);
 ctx.closePath();
 ctx.stroke();
 
 // y軸の描画
 ctx.beginPath();
-ctx.moveTo(20, Y-20);
-ctx.lineTo(X-20, Y-20);
+ctx.moveTo(0, Y-40);
+ctx.lineTo(X-40, Y-40);
 ctx.closePath();
 ctx.stroke();
 
-let stX = 0;
-let stY = 0;
+datalist = [];
+}
+
+
+
 //描画の開始
 function startDraw(event){
 //canvasの絶対座標を取得
 wbound = event.target.getBoundingClientRect();
 //マウスの座標（始点）をセット
-stX = event.clientX - wbound.left;
-stY = event.clientY - wbound.top;
+let data = new Object();
+data.x = event.clientX - wbound.left;
+data.y = event.clientY - wbound.top;
 
+ctx.fillStyle = "rgb(0, 0, 255)";
 ctx.beginPath();
-ctx.arc(stX, stY, 10, 0, Math.PI * 2, false);
+ctx.arc(data.x, data.y, 5, 0, Math.PI * 2, false);
 ctx.fill();
-ctx.moveTo(stX, stY);
+ctx.moveTo(data.x, data.y);
 ctx.restore();
 
+data.y *=  -1;
+datalist.push(data);
 }
+
+
+const lsm = coordinates => {
+    const n = coordinates.length;
+    const sigX = coordinates.reduce((sum, c) => sum + c.x, 0);
+    const sigY = coordinates.reduce((sum, c) => sum + c.y, 0);
+    const sigXX = coordinates.reduce((sum, c) => sum + c.x * c.x, 0);
+    const sigXY = coordinates.reduce((sum, c) => sum + c.x * c.y, 0);
+    // a(傾き)を求める
+    const a = (n * sigXY - sigX * sigY) / (n * sigXX - Math.pow(sigX, 2));
+    // b(切片)を求める
+    const b = (sigXX * sigY - sigXY * sigX) / (n * sigXX - Math.pow(sigX, 2));
+    return { a, b };
+  }
+
+  document.getElementById('lsm').onclick = function () {
+    const { a, b } = lsm(datalist);
+    ctx.strokeStyle = "rgb(255, 0, 0)";
+    ctx.beginPath();
+    ctx.moveTo(0, -(a + b));
+    ctx.lineTo(X-40, -((X -40) * a + b));
+    ctx.stroke();
+};
+document.getElementById('lsm-reset').onclick = function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    initCanvas();
+};
