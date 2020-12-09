@@ -3,8 +3,8 @@
  }
 
 body {
-   margin: 0;
-   padding: 0;
+    margin: 0;
+    padding: 0;
     font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: rgb(240, 240, 240);
 }
@@ -233,17 +233,16 @@ button {
     padding:10px 0 10px;
     margin-right: 30px;
     cursor: pointer;
-    background-color: black;
     background: -webkit-gradient(linear, right top, left top, from(rgb(60, 179, 113)), to(black));
-    background: -webkit-linear-gradient(right, rgb(60, 179, 113), white);
-    background: linear-gradient(to left, rgb(60, 179, 113), white);
+    background: -webkit-linear-gradient(right, rgb(60, 179, 113), rgb(200, 200, 200));
+    background: linear-gradient(to left, rgb(60, 179, 113), rgb(200, 200, 200));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 input[type=range] {
     -webkit-appearance:none;
-    background:-webkit-gradient(linear, right top, left top, from(rgb(60, 179, 113)), to(black));
+    background:-webkit-gradient(linear, right top, left top, from(rgb(60, 179, 113)), to(rgb(240, 240, 240)));
     outline: 0;
     height:10px;
     width:240px;
@@ -251,7 +250,7 @@ input[type=range] {
   }
 input[type=range]::-webkit-slider-thumb{
     -webkit-appearance:none;
-    background: -webkit-gradient(linear, right top, left top, from(rgb(60, 179, 113)), to(white));
+    background: -webkit-gradient(linear, right top, left top, from(rgb(60, 179, 113)), to(rgb(240, 240, 240)));
     height:15px;
     width:15px;
     border-radius:50%;
@@ -263,7 +262,7 @@ input[type=range]::-moz-range-track{
     height:0;
 }
 input[type=range]::-moz-range-thumb{
-    background: -webkit-gradient(linear, right top, left top, from(rgb(60, 179, 113)), to(white));
+    background: -webkit-gradient(linear, right top, left top, from(rgb(60, 179, 113)), to(rgb(240, 240, 240)));
     height:20px;
     width:20px;
     border:none;
@@ -290,5 +289,9 @@ input[type=range]::-moz-range-thumb{
 .graph-btn {
     width:100px;
     font-size:20px;
+    background-color: rgb(240, 240, 240);
+    color: #4b4b4b;
+    padding:10px 0 10px;
+    margin-right: 30px;
     text-align:center;
 }
